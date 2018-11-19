@@ -16,7 +16,7 @@ const argv = yargs.argv;
 var command = argv._[0]
 // console.log(command);
 // console.log(process.argv);
-console.log(yargs.argv);
+// console.log(yargs.argv); 
 // { _: [ 'add' ], '$0': 'app.js' }
 
 // example1:
@@ -39,7 +39,15 @@ console.log(yargs.argv);
 if (command === 'list') {
 	notes.getAll();
 }else if(command === 'add') {
-	notes.addNotes(argv.title, argv.body);
+	var note = notes.addNotes(argv.title, argv.body);
+	if (note) {
+		console.log("Note Created Successfully")
+		console.log("-----");
+		console.log(`Title: ${note.title}`);
+		console.log(`Body: ${note.body}`);
+	} else{
+		console.log("Note Title Taken")
+	}
 }else if(command === 'remove') {
 	notes.removeNote(argv.title)
 }else if(command === 'read') {
