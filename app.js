@@ -42,16 +42,25 @@ if (command === 'list') {
 	var note = notes.addNotes(argv.title, argv.body);
 	if (note) {
 		console.log("Note Created Successfully")
-		console.log("-----");
-		console.log(`Title: ${note.title}`);
-		console.log(`Body: ${note.body}`);
+		notes.logNote(note)
 	} else{
 		console.log("Note Title Taken")
 	}
 }else if(command === 'remove') {
-	notes.removeNote(argv.title)
+	var isDeleted = notes.removeNote(argv.title)
+	if (isDeleted){
+		console.log(`"${argv.title}" Note Successfully Deleted`)
+	}else{
+		console.log("Note Not Found")
+	}
 }else if(command === 'read') {
-	notes.readNote(argv.title)
+	var note = notes.getNote(argv.title);
+	if (note){
+		console.log("Note Found")
+		notes.logNote(note)
+	}else{
+		console.log("Note Not Found")
+	}
 }else{
 	console.log("command not recognized");
 }
