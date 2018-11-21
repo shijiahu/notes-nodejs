@@ -30,7 +30,7 @@ var addNotes = (title, body) =>{
 };
 
 var getAll = () =>{
-	console.log("All note listed")
+	return fetchNotes();
 }
 var removeNote = (title) =>{
 	var notes = fetchNotes();

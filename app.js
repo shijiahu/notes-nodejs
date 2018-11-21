@@ -37,7 +37,9 @@ var command = argv._[0]
 //   '$0': 'app.js' }
 
 if (command === 'list') {
-	notes.getAll();
+	var allNotes = notes.getAll();
+	console.log(`Printing all ${allNotes.length} note(s) `);
+	allNotes.forEach((note) => notes.logNote(note))
 }else if(command === 'add') {
 	var note = notes.addNotes(argv.title, argv.body);
 	if (note) {
