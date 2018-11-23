@@ -7,12 +7,43 @@ const yargs = require('yargs');
 
 const notes = require('./notes.js');
 
-const argv = yargs.argv;
+// const argv = yargs.argv;
 // var command = process.argv[2];
 // parse it is not easy, so we use yargs
 // [ '/usr/local/bin/node',
 //   '/Users/shijiahu/Desktop/notes-node/app.js',
 //   'add' ]
+
+const titleOptions = {
+	describe: 'Title of note',
+	demand: true,
+	alias: 't'
+}
+
+const bodyOptions = {
+	describe: 'body of note',
+	demand: true,
+	alias: 'b'
+}
+
+const argv = yargs
+	.command('add', 'Add a new note', {
+		title: titleOptions,
+		body: bodyOptions,
+	})
+	.command('list', 'list all notes')
+	.command('read', 'read a note', {
+		title: titleOptions,
+	})
+	.command('remove', 'remove a note', {
+		title: titleOptions,
+	})
+	.help()
+	.argv;
+// node app.js --help
+// node app.js add --help
+
+
 var command = argv._[0]
 // console.log(command);
 // console.log(process.argv);
